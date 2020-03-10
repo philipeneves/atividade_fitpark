@@ -1,3 +1,5 @@
+# Listas com valores para unidades e dezenas
+
 unities = ["zero", "um", "dois", "três", "quatro",
             "cinco", "seis", "sete", "oito", "nove"]
 
@@ -6,140 +8,142 @@ teens = ["dez", "onze", "doze", "treze", "quatorze", "quinze", "dezesseis", "dez
 tens = ["dez", "vinte", "trinta", "quarenta", "cinquenta",
         "sessenta", "setenta", "oitenta", "noventa"]
 
-def tercia(num):
+def transform(num):
     number = str(num)
     number.zfill(3)
-    a = int(number[0])
-    b = int(number[1])
-    c = int(number[2])
-    if a == 0:
-        if b == 0:
-            result = unities[c]
+    
+    fstDig = int(number[0]) # Primeiro (First) digito da centena
+    secDig = int(number[1]) # Segundo (Second) digito da centena
+    thdDig = int(number[2]) # Terceiro (Third) digito da centena
+
+    if fstDig == 0:
+        if secDig == 0: 
+            result = unities[thdDig]
             return result
-        elif b == 1:
-            if c >= 0 and c <= 9:
-                result = teens[c]
+        elif secDig == 1:
+            if thdDig >= 0 and thdDig <= 9:
+                result = teens[thdDig]
                 return result
-        elif b == 2:
-            if c == 0:
+        elif secDig == 2:
+            if thdDig == 0:
                 result = 'vinte'
                 return result
-            elif c > 0 and c <= 9:
-                result = 'vinte e ' + unities[c]
+            elif thdDig > 0 and thdDig <= 9:
+                result = 'vinte e ' + unities[thdDig]
                 return result
-        elif b >=3 and b <= 9:
-            if c == 0:
-                result = tens[b-1]
+        elif secDig >= 3 and secDig <= 9:
+            if thdDig == 0:
+                result = tens[secDig-1]
                 return result
-            if c >= 1 and c <= 9:
-                result = tens[b-1] + ' e ' + unities[c]
+            if thdDig >= 1 and thdDig <= 9:
+                result = tens[secDig-1] + ' e ' + unities[thdDig]
                 return result
-    if a == 1:
-        if b == 0:
-            if c == 0:
+    if fstDig == 1:
+        if secDig == 0:
+            if thdDig == 0:
                 result = 'cem'
                 return result
-            elif c > 0 and c <= 9:
-                result = 'cento e ' + unities[c]
+            elif thdDig > 0 and thdDig <= 9:
+                result = 'cento e ' + unities[thdDig]
                 return result
-        elif  b == 1:
-            if c >= 0 and c <= 9:
-                result = 'cento e ' + teens[c]
+        elif  secDig == 1:
+            if thdDig >= 0 and thdDig <= 9:
+                result = 'cento e ' + teens[thdDig]
                 return result
-        elif b == 2:
-            if c == 0:
+        elif secDig == 2:
+            if thdDig == 0:
                 result = 'cento e vinte'
                 return result
-            elif c > 0 and c <= 9:
-                result = 'cento e vinte e ' + unities[c]
+            elif thdDig > 0 and thdDig <= 9:
+                result = 'cento e vinte e ' + unities[thdDig]
                 return result
-        elif b >= 3 and b <= 9:
-            if c == 0:
-                result = 'cento e ' + tens[b-1]
+        elif secDig >= 3 and secDig <= 9:
+            if thdDig == 0:
+                result = 'cento e ' + tens[secDig-1]
                 return result
-            elif c > 0 and c <= 9:
-                result = 'cento e ' + tens[b-1] + ' e ' + unities[c]
+            elif thdDig > 0 and thdDig <= 9:
+                result = 'cento e ' + tens[secDig-1] + ' e ' + unities[thdDig]
                 return result
 
-    elif a >= 2 and a <= 9:
-        if a == 2 and b ==0 and c == 0:
+    elif fstDig >= 2 and fstDig <= 9:
+        if fstDig == 2 and secDig == 0 and thdDig == 0:
             prefix= 'duzentos'
-        elif a ==2:
+        elif fstDig == 2:
             prefix= 'duzentos e '
 
-        if a == 3 and b ==0 and c == 0:
+        if fstDig == 3 and secDig == 0 and thdDig == 0:
             prefix= 'trezentos'
-        elif a == 3:
+        elif fstDig == 3:
             prefix= 'trezentos e '
-        if a == 4 and b ==0 and c == 0:
+        if fstDig == 4 and secDig == 0 and thdDig == 0:
             prefix= 'quatrocentos'
-        elif a == 4:
+        elif fstDig == 4:
             prefix= 'quatrocentos e '
-        if a == 5 and b ==0 and c == 0:
+        if fstDig == 5 and secDig == 0 and thdDig == 0:
             prefix= 'quinhentos'
-        elif a == 5:
+        elif fstDig == 5:
             prefix= 'quinhentos e '
-        if a == 6 and b ==0 and c == 0:
+        if fstDig == 6 and secDig == 0 and thdDig == 0:
             prefix= 'seiscentos'
-        elif a == 6:
+        elif fstDig == 6:
             prefix= 'seiscentos e '
 
-        if a == 7 and b ==0 and c == 0:
+        if fstDig == 7 and secDig == 0 and thdDig == 0:
             prefix= 'setecentos'
         
-        elif a == 7:
+        elif fstDig == 7:
             prefix= 'setecentos e '
-        if a == 8 and b ==0 and c == 0:
+        if fstDig == 8 and secDig == 0 and thdDig == 0:
             prefix= 'oitocentos'
-        elif a == 8:
+        elif fstDig == 8:
             prefix= 'oitocentos e '
-        if a == 9 and b ==0 and c == 0:
+        if fstDig == 9 and secDig == 0 and thdDig == 0:
             prefix= 'novecentos'
-        elif a == 9:
+        elif fstDig == 9:
             prefix= 'novecentos e '
 
-        if b == 0:
-            if c == 0:
+        if secDig == 0:
+            if thdDig == 0:
                 result = prefix
                 return result
-            elif c > 0 and c <= 9:
-                result = prefix + unities[c]
+            elif thdDig > 0 and thdDig <= 9:
+                result = prefix + unities[thdDig]
                 return result
-        elif b == 1:
-            if c >= 0 and c <= 9:
-                result = prefix + teens[c]
+        elif secDig == 1:
+            if thdDig >= 0 and thdDig <= 9:
+                result = prefix + teens[thdDig]
                 return result
-        elif b == 2:
-            if c == 0:
+        elif secDig == 2:
+            if thdDig == 0:
                 result = prefix + 'vinte'
                 return result
-            elif c > 0 and c <= 9:
-                result = prefix + 'vinte e ' + unities[c]
+            elif thdDig > 0 and thdDig <= 9:
+                result = prefix + 'vinte e ' + unities[thdDig]
                 return result
-        elif b >= 3 and b <= 9:
-            if c == 0:
-                result = prefix + tens[b-1]
+        elif secDig >= 3 and secDig <= 9:
+            if thdDig == 0:
+                result = prefix + tens[secDig-1]
                 return result
-            elif c > 0 and c <= 9:
-                result = prefix + tens[b-1] + ' e ' + unities[c]
+            elif thdDig > 0 and thdDig <= 9:
+                result = prefix + tens[secDig-1] + ' e ' + unities[thdDig]
                 return result
 
 num = input("Por favor, digite o valor (Obs: para casas décimais usar a vírgula):")
 if num.count(",") <= 1:
     try:
-        num = num.split(",")
-        beforeComma = ''
+        num = num.split(",") # Separa inteiro do décimal
+        beforeComma = '' 
         afterComma = ''
         number = str(num[0])
+        number = number.zfill(9) + number
         if len(num) > 1:
             cent = str(num[1])
             cent = cent.zfill(9) + cent
-        number = number.zfill(9) + number
         
         for i in [0,3,6]:
             var = number[i] + number[i+1] + number[i+2]
             if int(var) != 0:
-                res = tercia(var)
+                res = transform(var)
                 if i == 0:
                     beforeComma = res + " milhões "
                 elif i == 3:
@@ -150,11 +154,11 @@ if num.count(",") <= 1:
             beforeComma += " reais"
         else:
             beforeComma += " real"
-        if len(num) > 1:
+        if len(num) > 1: # Verifica se existe décimal
             for c in [0,3,6]:
                 var2 = cent[c] + cent[c+1] + cent[c+2]
                 if int(var2) != 0:
-                    res2 = tercia(var2)
+                    res2 = transform(var2)
                     afterComma =" e " + afterComma + res2 + " centavo(s)"
         ext = beforeComma + afterComma
         print(ext.capitalize())

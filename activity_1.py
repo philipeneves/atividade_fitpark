@@ -123,45 +123,42 @@ def tercia(num):
             elif c > 0 and c <= 9:
                 result = prefix + tens[b-1] + ' e ' + unities[c]
                 return result
-def main():
-    num = input("Por favor, digite o valor (Obs: para casas décimais usar a vírgula):")
-    if num.count(",") <= 1:
-        try:
-            num = num.split(",")
-            beforeComma = ''
-            afterComma = ''
-            number = str(num[0])
-            if len(num) > 1:
-                cent = str(num[1])
-                cent = cent.zfill(9) + cent
-            number = number.zfill(9) + number
-            
-            posicion = 1
-            for i in [0,3,6]:
-                var = number[i] + number[i+1] + number[i+2]
-                if int(var) != 0:
-                    res = tercia(var)
-                    if i == 0:
-                        beforeComma = res + " milhões "
-                    elif i == 3:
-                        beforeComma = beforeComma + res + " mil "
-                    elif i == 6:
-                        beforeComma = beforeComma + res
-            if int(num[0]) > 1:
-                beforeComma += " reais"
-            else:
-                beforeComma += " real"
-            if len(num) > 1:
-                for c in [0,3,6]:
-                    var2 = cent[c] + cent[c+1] + cent[c+2]
-                    if int(var2) != 0:
-                        res2 = tercia(var2)
-                        afterComma =" e " + afterComma + res2 + " centavo(s)"
-            ext = beforeComma + afterComma
-            print(ext.capitalize())
-        except:
-            print("Operação não permitida. Verifique se o valor digitado é um número, em caso de casa décimal, é necessário usar vírgula.")
-    else:
-        print("Operação não permitida. Não é possível existir mais de uma vírgula no número.")
 
-main()
+num = input("Por favor, digite o valor (Obs: para casas décimais usar a vírgula):")
+if num.count(",") <= 1:
+    try:
+        num = num.split(",")
+        beforeComma = ''
+        afterComma = ''
+        number = str(num[0])
+        if len(num) > 1:
+            cent = str(num[1])
+            cent = cent.zfill(9) + cent
+        number = number.zfill(9) + number
+        
+        for i in [0,3,6]:
+            var = number[i] + number[i+1] + number[i+2]
+            if int(var) != 0:
+                res = tercia(var)
+                if i == 0:
+                    beforeComma = res + " milhões "
+                elif i == 3:
+                    beforeComma = beforeComma + res + " mil "
+                elif i == 6:
+                    beforeComma = beforeComma + res
+        if int(num[0]) > 1:
+            beforeComma += " reais"
+        else:
+            beforeComma += " real"
+        if len(num) > 1:
+            for c in [0,3,6]:
+                var2 = cent[c] + cent[c+1] + cent[c+2]
+                if int(var2) != 0:
+                    res2 = tercia(var2)
+                    afterComma =" e " + afterComma + res2 + " centavo(s)"
+        ext = beforeComma + afterComma
+        print(ext.capitalize())
+    except:
+        print("Operação não permitida. Verifique se o valor digitado é um número, em caso de casa décimal, é necessário usar vírgula.")
+else:
+    print("Operação não permitida. Não é possível existir mais de uma vírgula no número.")
